@@ -1,42 +1,65 @@
 Moodle Plugin Development Guidelines
 ===================================
 
-1. Plan the plugin type and scope
-   - Pick the plugin type that matches the feature you want (e.g., activity modules `mod`, blocks `block`, local plugins `local`, enrolment plugins `enrol`).
-   - Follow Moodle's Frankenstyle naming (`type_name`) and machine-name rules: start with a lowercase letter, use only lowercase letters/numbers/underscores, avoid double underscores, end with letter/number.
-   - Document both the friendly name (for users) and the component name (for code and directory structure).
+1. Plan the plugin type and architecture
+   - Select the plugin type that matches the feature (e.g., `mod`, `block`, `local`, `enrol`) and record both the friendly name and Frankenstyle component (`type_name`).
+   - Map the PHP surface (capabilities, events, settings) and the Node/JavaScript surface (widgets, reactive flows) before coding so server and client concerns stay aligned.
+   - Verify naming rules: start with a lowercase letter, use only lowercase letters/numbers/underscores, avoid double underscores, end with letter/number (activity modules disallow underscores).
 
-2. Scaffold required plugin files early
-   - Start from the standard plugin skeleton so you have `version.php`, `db/access.php`, language strings (`lang/en`), settings, renderer, privacy provider, and tests in place.
-   - Keep shared plugin files consistent across types (see Moodle "Plugin files" docs) so auto-upgrades and administration tools recognize the plugin.
-   - Maintain `db/services.php`, `db/mobile.php`, and `db/events.php` only when needed—unused files should be omitted.
+2. Scaffold core plugin files early
+   - Start from Moodle's plugin skeleton to create `version.php`, `db/access.php`, `db/services.php`, `db/mobile.php`, language strings (`lang/en`), settings, renderer, privacy provider, tests, and `classes/` namespaces.
+   - Keep optional files (`db/events.php`, `db/install.xml`, `db/upgrade.php`) as documented placeholders when not yet populated so future changes slot in without refactors.
+   - Track `version.php` requirements (`$plugin->component`, `$plugin->version`, `$plugin->requires`, `$plugin->dependencies`) even if values are stubbed during inception.
 
-3. Add Moodle App (mobile) support intentionally
-   - Create `db/mobile.php` to declare handlers that extend specific Moodle App delegates (e.g., `CoreMainMenuDelegate`, `CoreCourseFormatDelegate`).
-   - Implement the exported PHP callbacks in the reserved `\{component}\output\mobile` namespace, returning arrays with `templates`, `javascript`, and `otherdata` as required.
-   - Rely on the core `tool_mobile_get_content` service; write plain PHP returning Mustache output instead of custom web services unless advanced functionality demands it.
+3. Configure MDK and Node tooling
+   - Use the Moodle Developer Kit (`mdk`) for environment automation (e.g., `mdk init`, `mdk sync`, `mdk run behat`, `mdk run phpunit`, `mdk plugins create`) to script repetitive admin tasks.
+   - Manage JavaScript dependencies with `npm`/`yarn` inside your plugin; run `grunt amd` (or `mdk run grunt amd`) to rebuild AMD modules after editing `amd/src/*.js`.
+   - Document custom build steps or Node scripts in `package.json` to keep CI and contributors aligned; avoid committing build artefacts when the pipeline can regenerate them.
 
-4. Build mobile templates with Ionic-friendly components
-   - Render templates with `$OUTPUT->render_from_template()` and switch Mustache delimiters (`{{=<% %>=}}`) to avoid clashing with Angular's `{{ }}` syntax.
-   - Use Ionic and Moodle App components/directives instead of Bootstrap; reference the Site Plugins UI API for layout, navigation, and actions.
-   - Keep templates modular (`templates/` directory) and provide corresponding language strings via `lang/en/{component}.php` for localization.
+4. Write JavaScript as ES2015 AMD modules
+   - Place code in `amd/src/` directories and export from `amd/build/` via Moodle's build chain; name modules `component/local/...` using Moodle naming conventions.
+   - Prefer standard language features, the Fetch API, and Moodle core helpers (`core/str`, `core/templates`, `core/notification`, `core/url`, `core/modal`) instead of jQuery or legacy YUI.
+   - Avoid `core/ajax` for new code when a REST or fetch workflow suffices; if web service calls are required, wrap them in thin utilities and handle promises with async/await.
+   - Isolate selectors, string constants, and capability flags to keep modules testable; expose pure functions for business logic and drive DOM updates via reactive components or templates.
 
-5. Manage data flow, caching, and versioning
-   - Expect handlers to receive contextual data (`userid`, `courseid`, `cmid`, app version, language) and shape responses accordingly.
-   - Understand that static templates are cached at login, whereas dynamic templates run on each view—choose the mode that fits the data.
-   - After backend changes, refresh the browser or pull-to-refresh; purge caches or bump `version.php` when updates fail to appear.
+5. Build reactive interfaces with Moodle's reactive library
+   - Use `core/reactive` BaseComponent and ReactiveState to create React-style components without additional frameworks.
+   - Compose UI from small components, register state watchers via `getWatchers()`, and mutate state through explicit actions to keep the data flow predictable.
+   - Initialise components from Mustache via the `{{#js}}` block and `require([...], component => component.init(...))`; pass selectors so templates can customise markup without changing logic.
+   - Encourage accessibility and performance by re-rendering only when state changes, memoising expensive selectors, and cleaning up in the `destroy()` lifecycle hook.
 
-6. Respect Moodle capability, privacy, and security standards
-   - Always check capabilities before exposing data or actions; reuse Moodle APIs for database access, files, and events.
-   - Sanitize all output, avoid direct SQL without Moodle's database layer, and declare stored data in the privacy provider if the plugin keeps personal data.
-   - Keep JavaScript minimal and scoped; prefer Moodle-provided services for network requests and avoid leaking tokens or sensitive data.
+6. Design Mustache templates intentionally
+   - Store templates under `templates/` (with optional `local/` subdirectories), include the Moodle GPL header, and describe required context, classes, and data attributes in comments.
+   - Keep templates logic-free: pass fully prepared data, rely on sections (`{{# }}`, `{{^ }}`), and reuse helpers (`{{#str}}`, `{{#pix}}`, `{{#userdate}}`, `{{#shortentext}}`).
+   - Generate unique IDs with `{{uniqid}}` when hooking JavaScript, and switch delimiters (`{{=<% %>=}}`) in mobile templates to avoid Angular collisions.
+   - Allow themes to override templates; avoid hard-coded styles by leaning on Bootstrap utilities and context data instead of inline CSS.
 
-7. Test iteratively across environments
-   - Use hosted Moodle App instances (`latest.apps.moodledemo.net`, `main.apps.moodledemo.net`), Docker images, or native builds to validate UI/UX.
-   - Exercise plugin workflows both in the LMS web interface and the app to ensure consistent behavior and graceful fallbacks.
-   - Log errors, monitor the browser console/network inspector, and use Moodle debugging modes to surface integration issues early.
+7. Adopt Bootstrap 5-first styling
+   - Use Bootstrap 5 utility classes (`d-flex`, `row-cols-*`, `mb-3`) rather than deprecated BS4 helpers (`.form-group`, `.card-deck`, `.btn-block`).
+   - Replace jQuery-dependent components with BS5-compatible patterns (e.g., `data-bs-toggle`, Popper 2 tooltips) and remove legacy `.input-group-append` markup.
+   - Keep SCSS overrides small, follow the BS5 bridge guidance, and plan to remove temporary compatibility shims once core drops BS4 support.
+   - Test themes across viewport sizes, ensuring custom styles respect the new CSS variables and spacing scale.
 
-8. Prepare for release and maintenance
-   - Keep documentation (README, upgrade notes) alongside the plugin; describe required Moodle version and dependencies.
-   - Increment the plugin version for every release, provide upgrade steps, and test install/upgrade paths.
-   - Engage with the Moodle community (forums, Matrix rooms) when you need new delegate extension points or to share feedback.
+8. Integrate Moodle App (mobile) support as needed
+   - Declare app handlers in `db/mobile.php`, mapping to delegates like `CoreMainMenuDelegate` or `CoreCourseFormatDelegate` and supply language strings for UI text.
+   - Implement handler callbacks under `\{component}\output\mobile` returning arrays with `templates`, `javascript`, and `otherdata` keys.
+   - Render Mustache mobile templates with Ionic-friendly markup and ensure dynamic data is pulled via contextual arguments (`userid`, `courseid`, `cmid`).
+
+9. Manage data flow, caching, and versioning
+   - Respect the difference between static (cached) and dynamic templates when tailoring responses for mobile or web.
+   - Purge caches (`mdk run php admin/cli/purge_caches.php`) or bump `version.php` when behaviour changes; document manual refresh steps if automation is not possible.
+   - Use Moodle's APIs for database, capabilities, events, and file storage; encapsulate external calls in services that can be mocked during tests.
+
+10. Enforce capability, privacy, and security standards
+   - Check capabilities before exposing data or actions, and sanitize output via Moodle renderers/format_text helpers.
+   - Declare data collection in the privacy provider, extend metadata when storing personal data, and remove unused retention logic.
+   - Scope JavaScript tokens carefully, prefer sesskey-protected endpoints, and avoid embedding secrets in templates or local storage.
+
+11. Test iteratively across platforms
+   - Exercise workflows via Moodle web UI, Moodle App (hosted builds or local), and automated suites (`mdk run phpunit`, `mdk run behat`, JS unit tests via `grunt karma`).
+   - Inspect browser consoles and network logs; enable Moodle debugging and watch for reactive state warnings or BS5 deprecation notices.
+   - Include fixture data and sample templates for QA parity across PHP, Node, and mobile surfaces.
+
+12. Prepare documentation and releases
+   - Maintain README, CHANGELOG, and upgrade steps; describe supported Moodle versions, dependency ranges, and required cron/webservice configuration.
+   - Tag releases after bumping `version.php`, and coordinate with the Moodle community (forums, Matrix) when requesting new delegate extension points or sharing feedback.
