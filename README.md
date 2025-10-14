@@ -45,18 +45,24 @@ This repository captures the starting point for building a Moodle plugin across 
 - Bootstrap 5 Migration Guidance: <https://moodledev.io/docs/5.1/guides/bs5migration>
 
 ## MCP Server for Moodle 4.5 APIs
-- Location: `mcp-server/` contains a Model Context Protocol server that mirrors the Moodle 4.5 API catalogue.
-- Resources:
-  - `moodleapi://catalog` summarises all APIs by category.
-  - `moodleapi://api/{slug}` returns JSON + Markdown for a specific API entry.
-  - `moodleapi://category/{categoryId}` groups APIs following the documentation hierarchy.
-- Tools:
+The `mcp-server/` workspace hosts a Model Context Protocol server that mirrors the Moodle 4.5 API catalogue for research, scaffolding, and agent automation.
+
+- **When to use it**
+  - Before designing a feature, query `lookup_api` for the definitive Moodle 4.5 guidance on any subsystem.
+  - During implementation reviews, pull `moodleapi://api/{slug}` to confirm required callbacks, settings, or capability checks.
+  - While pairing with MCP-aware agents (Cursor, Claude Desktop, etc.), point them at this server so suggestions stay aligned with the official docs.
+- **Resources**
+  - `moodleapi://catalog` summarises APIs by category.
+  - `moodleapi://api/{slug}` returns JSON + Markdown for a specific API entry (slug, anchor ID, or title).
+  - `moodleapi://category/{categoryId}` groups APIs following Moodle’s documentation hierarchy.
+- **Tools**
   - `lookup_api` fetches a single entry by slug, anchor ID, or title snippet.
   - `search_apis` filters APIs by keyword and optional category, returning brief summaries.
-- Setup:
-  - `cd mcp-server`
-  - `npm install`
-  - `npm run generate:apis` to refresh data from <https://moodledev.io/docs/4.5/apis> (re-run when Moodle updates the catalogue).
-- Running:
-  - `npm start` launches an stdio MCP server (default for agent integrations).
+- **Setup workflow**
+  1. `cd mcp-server`
+  2. `npm install`
+  3. `npm run generate:apis` to refresh data from <https://moodledev.io/docs/4.5/apis> (re-run when Moodle updates the catalogue).
+- **Running the server**
+  - `npm start` launches an stdio MCP server (ideal for direct MCP integrations).
   - `npm run start:http` serves HTTP on `POST /mcp`; override host/port with `--host`/`--port` or `HOST`/`PORT`.
+  - `npm run verify:mcp` performs a handshake smoke-test and prints available resources/tooling.

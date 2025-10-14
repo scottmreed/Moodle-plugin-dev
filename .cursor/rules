@@ -61,5 +61,24 @@ Moodle Plugin Development Guidelines
    - Include fixture data and sample templates for QA parity across PHP, Node, and mobile surfaces.
 
 12. Prepare documentation and releases
-   - Maintain README, CHANGELOG, and upgrade steps; describe supported Moodle versions, dependency ranges, and required cron/webservice configuration.
-   - Tag releases after bumping `version.php`, and coordinate with the Moodle community (forums, Matrix) when requesting new delegate extension points or sharing feedback.
+- Maintain README, CHANGELOG, and upgrade steps; describe supported Moodle versions, dependency ranges, and required cron/webservice configuration.
+- Tag releases after bumping `version.php`, and coordinate with the Moodle community (forums, Matrix) when requesting new delegate extension points or sharing feedback.
+
+# MCP Server quick guide
+- Location: `mcp-server/`; provides the Moodle 4.5 API catalogue to MCP-aware tools.
+- Refresh data with `npm run generate:apis` whenever the upstream docs change.
+- Preferred transports:
+  - `npm start` (stdio) for agent integrations.
+  - `npm run start:http` for HTTP clients targeting `POST /mcp`.
+- Smoke test before delegating to agents: `npm run verify:mcp`.
+- Resource URIs:
+  - `moodleapi://catalog`
+  - `moodleapi://api/{slug}`
+  - `moodleapi://category/{categoryId}`
+- Tools:
+  - `lookup_api` (single entry lookup).
+  - `search_apis` (keyword + optional category filter).
+- Use cases:
+  - Reference API guidance ahead of feature work.
+  - Cross-check implementation decisions during review.
+  - Supply grounded context when driving agents in Cursor or other MCP clients.

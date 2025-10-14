@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node src/server.js",
     "start:http": "node src/server.js --transport=http",
-    "generate:apis": "node scripts/generate-apis.js"
+    "generate:apis": "node scripts/generate-apis.js",
+    "verify:mcp": "node scripts/verify-mcp.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.20.0",
