@@ -1,0 +1,22 @@
+# Dependency directories
+node_modules/
+vendor/
+
+# Build artifacts
+coverage/
+report/
+.DS_Store
+.idea/
+*.log
+*.cache
+
+# Moodle environment specifics
+config.php
+moodledata/
+localcache/
+temp/
+sessions/
+
+# Editor helpers
+.vscode/
+*.code-workspace
