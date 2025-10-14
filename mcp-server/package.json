@@ -1,0 +1,21 @@
+{
+  "name": "moodle-mcp-server",
+  "version": "0.1.0",
+  "description": "Model Context Protocol server exposing Moodle 4.5 API guides",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "start:http": "node src/server.js --transport=http",
+    "generate:apis": "node scripts/generate-apis.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "cheerio": "1.0.0-rc.12",
+    "express": "^4.19.2",
+    "zod": "^3.23.8"
+  },
+  "engines": {
+    "node": ">=18.18"
+  }
+}

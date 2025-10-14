@@ -1,0 +1,861 @@
+{
+  "source": "https://moodledev.io/docs/4.5/apis",
+  "generatedAt": "2025-10-14T10:40:20.337Z",
+  "count": 59,
+  "apis": [
+    {
+      "title": "Access API (access)",
+      "slug": "access",
+      "anchorId": "access-api-access",
+      "category": "Most-used General API",
+      "categoryId": "most-used-general-api",
+      "summary": "The Access API gives you functions so you can determine what the current user is allowed to do, and it allows modules to extend Moodle with new capabilities.",
+      "references": [
+        {
+          "title": "Access API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/access"
+        }
+      ]
+    },
+    {
+      "title": "Data manipulation API (dml)",
+      "slug": "dml",
+      "anchorId": "data-manipulation-api-dml",
+      "category": "Most-used General API",
+      "categoryId": "most-used-general-api",
+      "summary": "The Data manipulation API allows you to read/write to databases in a consistent and safe way.",
+      "references": [
+        {
+          "title": "Data manipulation API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/dml"
+        }
+      ]
+    },
+    {
+      "title": "File API (files)",
+      "slug": "files",
+      "anchorId": "file-api-files",
+      "category": "Most-used General API",
+      "categoryId": "most-used-general-api",
+      "summary": "The File API controls the storage of files in connection to various plugins.",
+      "references": [
+        {
+          "title": "File API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/files"
+        }
+      ]
+    },
+    {
+      "title": "Form API (form)",
+      "slug": "form",
+      "anchorId": "form-api-form",
+      "category": "Most-used General API",
+      "categoryId": "most-used-general-api",
+      "summary": "The Form API defines and handles user data via web forms.",
+      "references": [
+        {
+          "title": "Form API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/form"
+        }
+      ]
+    },
+    {
+      "title": "Logging API (log)",
+      "slug": "log",
+      "anchorId": "logging-api-log",
+      "category": "Most-used General API",
+      "categoryId": "most-used-general-api",
+      "summary": "The Events API allows you to log events in Moodle, while Logging 2 describes how logs are stored and retrieved.",
+      "references": [
+        {
+          "title": "Events API",
+          "url": "https://docs.moodle.org/dev/Events_API"
+        },
+        {
+          "title": "Logging 2",
+          "url": "https://docs.moodle.org/dev/Logging_2"
+        }
+      ]
+    },
+    {
+      "title": "Navigation API (navigation)",
+      "slug": "navigation",
+      "anchorId": "navigation-api-navigation",
+      "category": "Most-used General API",
+      "categoryId": "most-used-general-api",
+      "summary": "The Navigation API allows you to manipulate the navigation tree to add and remove items as you wish.",
+      "references": [
+        {
+          "title": "Navigation API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/navigation"
+        }
+      ]
+    },
+    {
+      "title": "Page API (page)",
+      "slug": "page",
+      "anchorId": "page-api-page",
+      "category": "Most-used General API",
+      "categoryId": "most-used-general-api",
+      "summary": "The Page API is used to set up the current page, add JavaScript, and configure how things will be displayed to the user.",
+      "references": [
+        {
+          "title": "Page API",
+          "url": "https://docs.moodle.org/dev/Page_API"
+        }
+      ]
+    },
+    {
+      "title": "Output API (output)",
+      "slug": "output",
+      "anchorId": "output-api-output",
+      "category": "Most-used General API",
+      "categoryId": "most-used-general-api",
+      "summary": "The Output API is used to render the HTML for all parts of the page.",
+      "references": [
+        {
+          "title": "Output API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/output"
+        }
+      ]
+    },
+    {
+      "title": "String API (string)",
+      "slug": "string",
+      "anchorId": "string-api-string",
+      "category": "Most-used General API",
+      "categoryId": "most-used-general-api",
+      "summary": "The String API is how you get language text strings to use in the user interface. It handles any language translations that might be available.",
+      "references": [
+        {
+          "title": "String API",
+          "url": "https://docs.moodle.org/dev/String_API"
+        }
+      ]
+    },
+    {
+      "title": "Upgrade API (upgrade)",
+      "slug": "upgrade",
+      "anchorId": "upgrade-api-upgrade",
+      "category": "Most-used General API",
+      "categoryId": "most-used-general-api",
+      "summary": "The Upgrade API is how your module installs and upgrades itself, by keeping track of its own version.",
+      "references": [
+        {
+          "title": "Upgrade API",
+          "url": "https://moodledev.io/docs/4.5/guides/upgrade"
+        }
+      ]
+    },
+    {
+      "title": "Moodlelib API (core)",
+      "slug": "core",
+      "anchorId": "moodlelib-api-core",
+      "category": "Most-used General API",
+      "categoryId": "most-used-general-api",
+      "summary": "The Moodlelib API is the central library file of miscellaneous general-purpose Moodle functions. Functions can over the handling of request parameters, configs, user preferences, time, login, mnet, plugins, strings and others. There are plenty of defined constants too.",
+      "references": [
+        {
+          "title": "Moodlelib API",
+          "url": "https://docs.moodle.org/dev/Moodlelib_API"
+        }
+      ]
+    },
+    {
+      "title": "Admin settings API (admin)",
+      "slug": "admin",
+      "anchorId": "admin-settings-api-admin",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Admin settings API deals with providing configuration options for each plugin and Moodle core.",
+      "references": [
+        {
+          "title": "Admin settings",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/admin"
+        }
+      ]
+    },
+    {
+      "title": "Admin presets API (adminpresets)",
+      "slug": "adminpresets",
+      "anchorId": "admin-presets-api-adminpresets",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Admin presets API allows plugins to make some decisions/implementations related to the Site admin presets.",
+      "references": [
+        {
+          "title": "Admin presets API",
+          "url": "https://docs.moodle.org/dev/AdminPresetsAPI"
+        }
+      ]
+    },
+    {
+      "title": "Analytics API (analytics)",
+      "slug": "analytics",
+      "anchorId": "analytics-api-analytics",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Analytics API allow you to create prediction models and generate insights.",
+      "references": [
+        {
+          "title": "Analytics API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/analytics"
+        }
+      ]
+    },
+    {
+      "title": "Availability API (availability)",
+      "slug": "availability",
+      "anchorId": "availability-api-availability",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Availability API controls access to activities and sections.",
+      "references": [
+        {
+          "title": "Availability API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/availability"
+        }
+      ]
+    },
+    {
+      "title": "Backup API (backup)",
+      "slug": "backup",
+      "anchorId": "backup-api-backup",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Backup API defines exactly how to convert course data into XML for backup purposes, and the Restore API describes how to convert it back the other way.",
+      "references": [
+        {
+          "title": "Backup API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/backup"
+        },
+        {
+          "title": "Restore API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/backup/restore"
+        }
+      ]
+    },
+    {
+      "title": "Cache API (cache)",
+      "slug": "cache",
+      "anchorId": "cache-api-cache",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The The Moodle Universal Cache (MUC) is the structure for storing cache data within Moodle. Cache API explains some of what is needed to use a cache in your code.",
+      "references": [
+        {
+          "title": "The Moodle Universal Cache (MUC)",
+          "url": "https://docs.moodle.org/dev/The_Moodle_Universal_Cache_(MUC)"
+        },
+        {
+          "title": "Cache API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/muc"
+        }
+      ]
+    },
+    {
+      "title": "Calendar API (calendar)",
+      "slug": "calendar",
+      "anchorId": "calendar-api-calendar",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Calendar API allows you to add and modify events in the calendar for user, groups, courses, or the whole site.",
+      "references": [
+        {
+          "title": "Calendar API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/calendar"
+        }
+      ]
+    },
+    {
+      "title": "Check API (check)",
+      "slug": "check",
+      "anchorId": "check-api-check",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Check API allows you to add security, performance or health checks to your site.",
+      "references": [
+        {
+          "title": "Check API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/check"
+        }
+      ]
+    },
+    {
+      "title": "Comment API (comment)",
+      "slug": "comment",
+      "anchorId": "comment-api-comment",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Comment API allows you to save and retrieve user comments, so that you can easily add commenting to any of your code.",
+      "references": [
+        {
+          "title": "Comment API",
+          "url": "https://docs.moodle.org/dev/Comment_API"
+        }
+      ]
+    },
+    {
+      "title": "Communication API (communication)",
+      "slug": "communication",
+      "anchorId": "communication-api-communication",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Communication API provides access to the messaging system and other communication providers (such as Matrix).",
+      "references": [
+        {
+          "title": "Communication API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/communication"
+        }
+      ]
+    },
+    {
+      "title": "Competency API (competency)",
+      "slug": "competency",
+      "anchorId": "competency-api-competency",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Competency API allows you to list and add evidence of competencies to learning plans, learning plan templates, frameworks, courses and activities.",
+      "references": [
+        {
+          "title": "Competency API",
+          "url": "https://docs.moodle.org/dev/Competency_API"
+        }
+      ]
+    },
+    {
+      "title": "Data definition API (ddl)",
+      "slug": "ddl",
+      "anchorId": "data-definition-api-ddl",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Data definition API is what you use to create, change and delete tables and fields in the database during upgrades.",
+      "references": [
+        {
+          "title": "Data definition API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/dml/ddl"
+        }
+      ]
+    },
+    {
+      "title": "Editor API",
+      "slug": "editor-api",
+      "anchorId": "editor-api",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Editor API is used to control HTML text editors.",
+      "references": [
+        {
+          "title": "Editor API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/editor"
+        }
+      ]
+    },
+    {
+      "title": "Enrolment API (enrol)",
+      "slug": "enrol",
+      "anchorId": "enrolment-api-enrol",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Enrolment API deals with course participants.",
+      "references": [
+        {
+          "title": "Enrolment API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/enrol"
+        }
+      ]
+    },
+    {
+      "title": "Events API (event)",
+      "slug": "event",
+      "anchorId": "events-api-event",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Events API allows to define \"events\" with payload data to be fired whenever you like, and it also allows you to define handlers to react to these events when they happen. This is the recommended form of inter-plugin communication. This also forms the basis for logging in Moodle.",
+      "references": [
+        {
+          "title": "Events API",
+          "url": "https://docs.moodle.org/dev/Events_API"
+        }
+      ]
+    },
+    {
+      "title": "Hooks API",
+      "slug": "hooks-api",
+      "anchorId": "hooks-api",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Hooks API allows core and plugins to communicate indirectly with other plugins.",
+      "references": [
+        {
+          "title": "Hooks API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/hooks"
+        }
+      ]
+    },
+    {
+      "title": "Experience API (xAPI)",
+      "slug": "xapi",
+      "anchorId": "experience-api-xapi",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Experience API (xAPI) is an e-learning standard that allows learning content and learning systems to speak to each other. The Experience API (xAPI) allows any plugin to generate and handle xAPI standard statements.",
+      "references": [
+        {
+          "title": "Experience API (xAPI)",
+          "url": "https://docs.moodle.org/dev/Experience_API_(xAPI)"
+        }
+      ]
+    },
+    {
+      "title": "External functions API (external)",
+      "slug": "external",
+      "anchorId": "external-functions-api-external",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The External functions API allows you to create fully parametrised methods that can be accessed by external programs (such as Web services).",
+      "references": [
+        {
+          "title": "External functions API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/external/functions"
+        },
+        {
+          "title": "Web services",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/external"
+        }
+      ]
+    },
+    {
+      "title": "Favourites API",
+      "slug": "favourites-api",
+      "anchorId": "favourites-api",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Favourites API allows you to mark items as favourites for a user and manage these favourites. This is often referred to as 'Starred'.",
+      "references": [
+        {
+          "title": "Favourites API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/favourites"
+        }
+      ]
+    },
+    {
+      "title": "H5P API (h5p)",
+      "slug": "h5p",
+      "anchorId": "h5p-api-h5p",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The H5P API allows plugins to make some decisions/implementations related to the H5P integration.",
+      "references": [
+        {
+          "title": "H5P API",
+          "url": "https://docs.moodle.org/dev/H5P_API"
+        },
+        {
+          "title": "H5P integration",
+          "url": "https://docs.moodle.org/dev/H5P"
+        }
+      ]
+    },
+    {
+      "title": "Lock API (lock)",
+      "slug": "lock",
+      "anchorId": "lock-api-lock",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Lock API lets you synchronise processing between multiple requests, even for separate nodes in a cluster.",
+      "references": [
+        {
+          "title": "Lock API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/lock"
+        }
+      ]
+    },
+    {
+      "title": "Message API (message)",
+      "slug": "message",
+      "anchorId": "message-api-message",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Message API lets you post messages to users. They decide how they want to receive them.",
+      "references": [
+        {
+          "title": "Message API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/message"
+        }
+      ]
+    },
+    {
+      "title": "Media API (media)",
+      "slug": "media",
+      "anchorId": "media-api-media",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Media API can be used to embed media items such as audio, video, and Flash.",
+      "references": [
+        {
+          "title": "Media",
+          "url": "https://docs.moodle.org/dev/Media_players#Using_media_players"
+        }
+      ]
+    },
+    {
+      "title": "My profile API",
+      "slug": "my-profile-api",
+      "anchorId": "my-profile-api",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The My profile API is used to add things to the profile page.",
+      "references": [
+        {
+          "title": "My profile API",
+          "url": "https://docs.moodle.org/dev/My_profile_API"
+        }
+      ]
+    },
+    {
+      "title": "OAuth 2 API (oauth2)",
+      "slug": "oauth2",
+      "anchorId": "oauth-2-api-oauth2",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The OAuth 2 API is used to provide a common place to configure and manage external systems using OAuth 2.",
+      "references": [
+        {
+          "title": "OAuth 2 API",
+          "url": "https://docs.moodle.org/dev/OAuth_2_API"
+        }
+      ]
+    },
+    {
+      "title": "Payment API (payment)",
+      "slug": "payment",
+      "anchorId": "payment-api-payment",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Payment API deals with payments.",
+      "references": [
+        {
+          "title": "Payment API",
+          "url": "https://docs.moodle.org/dev/Payment_API"
+        }
+      ]
+    },
+    {
+      "title": "Preference API (preference)",
+      "slug": "preference",
+      "anchorId": "preference-api-preference",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Preference API is a simple way to store and retrieve preferences for individual users.",
+      "references": [
+        {
+          "title": "Preference API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/preference"
+        }
+      ]
+    },
+    {
+      "title": "Portfolio API (portfolio)",
+      "slug": "portfolio",
+      "anchorId": "portfolio-api-portfolio",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Portfolio API allows you to add portfolio interfaces on your pages and allows users to package up data to send to their portfolios.",
+      "references": [
+        {
+          "title": "Portfolio API",
+          "url": "https://docs.moodle.org/dev/Portfolio_API"
+        }
+      ]
+    },
+    {
+      "title": "Privacy API (privacy)",
+      "slug": "privacy",
+      "anchorId": "privacy-api-privacy",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Privacy API allows you to describe the personal data that you store, and provides the means for that data to be discovered, exported, and deleted on a per-user basis. This allows compliance with regulation such as the General Data Protection Regulation (GDPR) in Europe.",
+      "references": [
+        {
+          "title": "Privacy API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/privacy"
+        }
+      ]
+    },
+    {
+      "title": "Rating API (rating)",
+      "slug": "rating",
+      "anchorId": "rating-api-rating",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Rating API lets you create AJAX rating interfaces so that users can rate items in your plugin. In an activity module, you may choose to aggregate ratings to form grades.",
+      "references": [
+        {
+          "title": "Rating API",
+          "url": "https://docs.moodle.org/dev/Rating_API"
+        }
+      ]
+    },
+    {
+      "title": "Report builder API (reportbuilder)",
+      "slug": "reportbuilder",
+      "anchorId": "report-builder-api-reportbuilder",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Report builder API allows you to create reports in your plugin, as well as providing custom reporting data which users can use to build their own reports.",
+      "references": [
+        {
+          "title": "Report builder API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/reportbuilder"
+        }
+      ]
+    },
+    {
+      "title": "RSS API (rss)",
+      "slug": "rss",
+      "anchorId": "rss-api-rss",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The RSS API allows you to create secure RSS feeds of data in your module.",
+      "references": [
+        {
+          "title": "RSS API",
+          "url": "https://docs.moodle.org/dev/RSS_API"
+        }
+      ]
+    },
+    {
+      "title": "Search API (search)",
+      "slug": "search",
+      "anchorId": "search-api-search",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Search API allows you to index contents in a search engine and query the search engine for results.",
+      "references": [
+        {
+          "title": "Search API",
+          "url": "https://docs.moodle.org/dev/Search_API"
+        }
+      ]
+    },
+    {
+      "title": "Tag API (tag)",
+      "slug": "tag",
+      "anchorId": "tag-api-tag",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Tag API allows you to store tags (and a tag cloud) to items in your module.",
+      "references": [
+        {
+          "title": "Tag API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/tag"
+        }
+      ]
+    },
+    {
+      "title": "Task API (task)",
+      "slug": "task",
+      "anchorId": "task-api-task",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Task API lets you run jobs in the background. Either once off, or on a regular schedule.",
+      "references": [
+        {
+          "title": "Task API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/task"
+        }
+      ]
+    },
+    {
+      "title": "Time API (time)",
+      "slug": "time",
+      "anchorId": "time-api-time",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Time API takes care of translating and displaying times between users in the site.",
+      "references": [
+        {
+          "title": "Time API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/time"
+        }
+      ]
+    },
+    {
+      "title": "Testing API (test)",
+      "slug": "test",
+      "anchorId": "testing-api-test",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The testing API contains the Unit test API (PHPUnit) and Acceptance test API (Acceptance testing). Ideally all new code should have unit tests written FIRST.",
+      "references": [
+        {
+          "title": "PHPUnit",
+          "url": "https://moodledev.io/general/development/tools/phpunit"
+        },
+        {
+          "title": "Acceptance testing",
+          "url": "https://moodledev.io/general/development/tools/behat"
+        }
+      ]
+    },
+    {
+      "title": "User-related APIs (user)",
+      "slug": "user",
+      "anchorId": "user-related-apis-user",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "This is a rather informal grouping of miscellaneous User-related APIs relating to sorting and searching lists of users.",
+      "references": [
+        {
+          "title": "User-related APIs",
+          "url": "https://moodledev.io/docs/4.5/apis/core/user"
+        }
+      ]
+    },
+    {
+      "title": "Web services API (webservice)",
+      "slug": "webservice",
+      "anchorId": "web-services-api-webservice",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Web services API allows you to expose particular functions (usually external functions) as web services.",
+      "references": [
+        {
+          "title": "Web services API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/external/writing-a-service"
+        }
+      ]
+    },
+    {
+      "title": "Badges API (badges)",
+      "slug": "badges",
+      "anchorId": "badges-api-badges",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The [https://docs.moodle.org/dev/OpenBadges_User_Documentation Badges] user documentation (is a temp page until we compile a proper page with all the classes and APIs that allows you to manage particular badges and OpenBadges Backpack).",
+      "references": [
+        {
+          "title": "https://docs.moodle.org/dev/OpenBadges_User_Documentation",
+          "url": "https://docs.moodle.org/dev/OpenBadges_User_Documentation"
+        }
+      ]
+    },
+    {
+      "title": "Custom fields API (customfield)",
+      "slug": "customfield",
+      "anchorId": "custom-fields-api-customfield",
+      "category": "Other General API",
+      "categoryId": "other-general-api",
+      "summary": "The Custom fields API allows you to configure and add custom fields for different entities",
+      "references": [
+        {
+          "title": "Custom fields API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/customfields"
+        }
+      ]
+    },
+    {
+      "title": "Activity completion API (completion)",
+      "slug": "completion",
+      "anchorId": "activity-completion-api-completion",
+      "category": "Activity module APIs",
+      "categoryId": "activity-module-apis",
+      "summary": "The Activity completion API is to indicate to the system how activities are completed.",
+      "references": [
+        {
+          "title": "Activity completion API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/activitycompletion"
+        }
+      ]
+    },
+    {
+      "title": "Advanced grading API (grading)",
+      "slug": "grading",
+      "anchorId": "advanced-grading-api-grading",
+      "category": "Activity module APIs",
+      "categoryId": "activity-module-apis",
+      "summary": "The Advanced grading API allows you to add more advanced grading interfaces (such as rubrics) that can produce simple grades for the gradebook.",
+      "references": [
+        {
+          "title": "Advanced grading API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/grading"
+        }
+      ]
+    },
+    {
+      "title": "Conditional activities API (condition) - deprecated in 2.7",
+      "slug": "condition",
+      "anchorId": "conditional-activities-api-condition---deprecated-in-27",
+      "category": "Activity module APIs",
+      "categoryId": "activity-module-apis",
+      "summary": "The deprecated Conditional activities API used to provide conditional access to modules and sections in Moodle 2.6 and below. It has been replaced by the Availability API.",
+      "references": [
+        {
+          "title": "Conditional activities API",
+          "url": "https://moodledev.io/docs/4.5/apis/core/conditionalactivities"
+        },
+        {
+          "title": "Availability API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/availability"
+        }
+      ]
+    },
+    {
+      "title": "Groups API (group)",
+      "slug": "group",
+      "anchorId": "groups-api-group",
+      "category": "Activity module APIs",
+      "categoryId": "activity-module-apis",
+      "summary": "The Groups API allows you to check the current activity group mode and set the current group.",
+      "references": [
+        {
+          "title": "Groups API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/group"
+        }
+      ]
+    },
+    {
+      "title": "Gradebook API (grade)",
+      "slug": "grade",
+      "anchorId": "gradebook-api-grade",
+      "category": "Activity module APIs",
+      "categoryId": "activity-module-apis",
+      "summary": "The Gradebook API allows you to read and write from the gradebook. It also allows you to provide an interface for detailed grading information.",
+      "references": [
+        {
+          "title": "Gradebook API",
+          "url": "https://docs.moodle.org/dev/Gradebook_API"
+        }
+      ]
+    },
+    {
+      "title": "Plagiarism API (plagiarism)",
+      "slug": "plagiarism",
+      "anchorId": "plagiarism-api-plagiarism",
+      "category": "Activity module APIs",
+      "categoryId": "activity-module-apis",
+      "summary": "The Plagiarism API allows your activity module to send files and data to external services to have them checked for plagiarism.",
+      "references": [
+        {
+          "title": "Plagiarism API",
+          "url": "https://moodledev.io/docs/4.5/apis/subsystems/plagiarism"
+        }
+      ]
+    },
+    {
+      "title": "Question API (question)",
+      "slug": "question",
+      "anchorId": "question-api-question",
+      "category": "Activity module APIs",
+      "categoryId": "activity-module-apis",
+      "summary": "The Question API (which can be divided into the Question bank API and the Question engine API), can be used by activities that want to use questions from the question bank.",
+      "references": [
+        {
+          "title": "Question API",
+          "url": "https://docs.moodle.org/dev/Question_API"
+        }
+      ]
+    }
+  ]
+}

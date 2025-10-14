@@ -43,3 +43,20 @@ This repository captures the starting point for building a Moodle plugin across 
 - Creating a Reactive UI: <https://moodledev.io/docs/5.1/guides/javascript/reactive>
 - Mustache Templates: <https://moodledev.io/docs/5.1/guides/templates>
 - Bootstrap 5 Migration Guidance: <https://moodledev.io/docs/5.1/guides/bs5migration>
+
+## MCP Server for Moodle 4.5 APIs
+- Location: `mcp-server/` contains a Model Context Protocol server that mirrors the Moodle 4.5 API catalogue.
+- Resources:
+  - `moodleapi://catalog` summarises all APIs by category.
+  - `moodleapi://api/{slug}` returns JSON + Markdown for a specific API entry.
+  - `moodleapi://category/{categoryId}` groups APIs following the documentation hierarchy.
+- Tools:
+  - `lookup_api` fetches a single entry by slug, anchor ID, or title snippet.
+  - `search_apis` filters APIs by keyword and optional category, returning brief summaries.
+- Setup:
+  - `cd mcp-server`
+  - `npm install`
+  - `npm run generate:apis` to refresh data from <https://moodledev.io/docs/4.5/apis> (re-run when Moodle updates the catalogue).
+- Running:
+  - `npm start` launches an stdio MCP server (default for agent integrations).
+  - `npm run start:http` serves HTTP on `POST /mcp`; override host/port with `--host`/`--port` or `HOST`/`PORT`.
