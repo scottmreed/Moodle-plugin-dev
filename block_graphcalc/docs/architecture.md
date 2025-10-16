@@ -6,8 +6,8 @@
 - **Target Moodle version**: 4.5 (confirm before release)
 
 ## Surfaces
-- **PHP**: `block_graphcalc` class delegates rendering to a dedicated renderer/ Mustache template.
-- **JavaScript**: AMD module `block_graphcalc/calculator` will host reactive calculator logic leveraging `core/reactive`.
+- **PHP**: `block_graphcalc` class renders a templatable `calculator` renderable via the plugin renderer.
+- **JavaScript**: AMD module `block_graphcalc/calculator` drives a client-side calculator using the Fetch API-free stack (plain JS + Moodle core utilities). Expressions are sanitised before being evaluated in a sandboxed `Function` wrapper.
 - **Mobile**: `db/mobile.php` reserved for future handlers mapped via `\block_graphcalc\output\mobile` classes.
 
 ## Capabilities
@@ -20,7 +20,6 @@
 - Privacy provider is a `null_provider`, string key `privacy:metadata` documents no personal data is stored.
 
 ## Pending Tasks
-- Implement renderer and Mustache template for calculator UI.
-- Build AMD module providing expression evaluation and plotting.
-- Add settings UI toggles to expose advanced features per instance/global scope.
-- Write Behat and PHPUnit scaffolds covering block placement and configuration defaults.
+- Introduce optional presets and advanced controls gated by the `allowadvanced` configuration flag.
+- Implement Moodle App handlers and Ionic templates.
+- Write Behat and PHPUnit scenarios covering block placement, expression validation, and quiz usage flows.

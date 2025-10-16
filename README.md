@@ -29,6 +29,9 @@ This repository captures the starting point for building a Moodle plugin across 
 - Keep Mustache templates logic-free, describe required context in comments, and use helpers (`{{#str}}`, `{{#pix}}`, `{{#userdate}}`, `{{uniqid}}`) to keep data and presentation clean.
 - Style with Bootstrap 5 utility classes and remove deprecated Bootstrap 4 patterns (`.form-group`, `.card-deck`, `.btn-block`).
 
+## Available Plugin Scaffolds
+- `block_graphcalc/` — Graphing calculator block with Mustache/AMD UI, renderer, privacy provider, placeholders for mobile handlers, and documentation under `docs/`.
+
 ## Prompt Suggestions
 - "Audit my Moodle plugin scaffold and point out any missing mandatory PHP or AMD files before first install."
 - "Generate a `core/reactive` component that renders data from `tool_mobile_get_content` using Ionic-friendly markup."
