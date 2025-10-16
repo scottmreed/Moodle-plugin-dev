@@ -1,0 +1,76 @@
+{{!
+    @template block_graphcalc/block
+    Template for the graphing calculator block UI.
+    Context variables:
+    * title: string - Localised block title.
+    * calculatorid: string - Unique DOM id used to initialise the JS controller.
+    * allowadvanced: bool - Whether to display advanced graph controls (future use).
+}}
+<div class="block_graphcalc" id="{{calculatorid}}">
+    <form class="graphcalc-form" novalidate>
+        <div class="mb-3">
+            <label class="form-label" for="{{calculatorid}}-expression">{{#str}}label:expression, block_graphcalc{{/str}}</label>
+            <input type="text" class="form-control" id="{{calculatorid}}-expression" name="expression"
+                data-region="expression" placeholder="x^2 + 3" aria-describedby="{{calculatorid}}-expression-help" required>
+            <div class="form-text" id="{{calculatorid}}-expression-help">
+                {{#str}}hint:expression, block_graphcalc{{/str}}
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-sm-6">
+                <label class="form-label" for="{{calculatorid}}-domain-start">{{#str}}label:domainstart, block_graphcalc{{/str}}</label>
+                <input type="number" step="any" class="form-control" id="{{calculatorid}}-domain-start"
+                    data-region="domain-start" value="-10">
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label" for="{{calculatorid}}-domain-end">{{#str}}label:domainend, block_graphcalc{{/str}}</label>
+                <input type="number" step="any" class="form-control" id="{{calculatorid}}-domain-end"
+                    data-region="domain-end" value="10">
+            </div>
+        </div>
+        <div class="row g-3 mt-2">
+            <div class="col-sm-6 col-md-4">
+                <label class="form-label" for="{{calculatorid}}-samples">{{#str}}label:samples, block_graphcalc{{/str}}</label>
+                <select class="form-select" id="{{calculatorid}}-samples" data-region="samples">
+                    <option value="25">25</option>
+                    <option value="50" selected>50</option>
+                    <option value="75">75</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <label class="form-label" for="{{calculatorid}}-value-at">{{#str}}label:valueat, block_graphcalc{{/str}}</label>
+                <input type="number" step="any" class="form-control" id="{{calculatorid}}-value-at" data-region="value-at" value="0">
+            </div>
+        </div>
+    </form>
+
+    <div class="mt-3" data-region="messages">
+        <div class="alert alert-warning d-none" role="alert" data-region="error"></div>
+        <div class="alert alert-success d-none" role="status" data-region="result"></div>
+    </div>
+
+    <div class="mt-3">
+        <h3 class="h6 mb-2">{{#str}}result:graphheading, block_graphcalc{{/str}}</h3>
+        <div class="ratio ratio-16x9 border rounded bg-body" data-region="graph-container">
+            <svg class="w-100 h-100" viewBox="0 0 400 240" role="img" aria-labelledby="{{calculatorid}}-graph-title"
+                focusable="false" data-region="graph">
+                <title id="{{calculatorid}}-graph-title">{{#str}}result:graphheading, block_graphcalc{{/str}}</title>
+                <rect class="graphcalc-plot-area" x="0" y="0" width="400" height="240" fill="var(--bs-body-bg, #fff)"></rect>
+                <line x1="0" y1="120" x2="400" y2="120" stroke="var(--bs-border-color, #d0d0d0)" stroke-width="1" stroke-dasharray="4 4"
+                    data-region="axis-x"></line>
+                <line x1="200" y1="0" x2="200" y2="240" stroke="var(--bs-border-color, #d0d0d0)" stroke-width="1" stroke-dasharray="4 4"
+                    data-region="axis-y"></line>
+                <path d="" fill="none" stroke="var(--bs-primary, #0d6efd)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+                    data-region="graph-line"></path>
+            </svg>
+        </div>
+    </div>
+</div>
+{{#js}}
+require(['block_graphcalc/calculator'], (Calculator) => {
+    Calculator.init(document.getElementById('{{calculatorid}}'), {
+        allowadvanced: {{#allowadvanced}}true{{/allowadvanced}}{{^allowadvanced}}false{{/allowadvanced}},
+    });
+});
+{{/js}}
