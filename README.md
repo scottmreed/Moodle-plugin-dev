@@ -1,6 +1,6 @@
 # Moodle Plugin Kickoff
 
-This repository captures the starting point for building a Moodle plugin across PHP, Node, and Moodle App surfaces while staying aligned with the official developer guidance.
+This repository captures the starting point for building a Moodle plugin across PHP, Node, and Moodle App surfaces while staying aligned with the official developer guidance. The local stack is built around **Moodle 5.0.3+ (Build: 20251017)**.
 
 ## Goals
 - Choose an appropriate plugin type and follow Moodle's naming/file layout conventions.
@@ -9,11 +9,12 @@ This repository captures the starting point for building a Moodle plugin across 
 
 ## Getting Started
 1. Review `AGENTS.md` (or `.cursor/rules`) for the consolidated development standards distilled from the Moodle documentation.
-2. Create a plugin skeleton with MDK (`mdk plugins create --name=type_name`) or clone an existing skeleton, then wire in required Moodle files (`version.php`, `db/access.php`, `lang/en/*.php`, etc.).
-3. Install Node tooling inside your plugin folder (`npm install`) and add scripts (e.g., `npm run lint`, `npm run build`) that call Moodle's `grunt amd` build where needed.
-4. Develop JavaScript in `amd/src/`, transpile with `grunt amd` (or `mdk run grunt amd`), and initialise components via Mustache `{{#js}}` blocks.
-5. Add `db/mobile.php` and matching PHP callbacks under `classes/output/mobile` when mobile support is required, then test via hosted Moodle App builds.
-6. Purge caches with `mdk run php admin/cli/purge_caches.php` or bump `version.php` after changing handlers, templates, or capabilities.
+2. Follow `docs/local-environment.md` to provision the Moodle 5 environment (Docker Postgres, PHP 8.3, Node 22, MDK).
+3. Create a plugin skeleton with MDK (`mdk plugins create --name=type_name`) or clone an existing skeleton, then wire in required Moodle files (`version.php`, `db/access.php`, `lang/en/*.php`, etc.).
+4. Install Node tooling inside your plugin folder (`npm install`) and add scripts (e.g., `npm run lint`, `npm run build`) that call Moodle's `grunt amd` build where needed.
+5. Develop JavaScript in `amd/src/`, transpile with `grunt amd`, and initialise components via Mustache `{{#js}}` blocks.
+6. Add `db/mobile.php` and matching PHP callbacks under `classes/output/mobile` when mobile support is required, then test via hosted Moodle App builds.
+7. Purge caches with `/opt/homebrew/opt/php@8.3/bin/php admin/cli/purge_caches.php` (or bump `version.php`) after changing handlers, templates, or capabilities.
 
 ## MDK & Node Workflow Essentials
 - Assume `pipx install moodle-sdk` has already been executed so the `mdk` CLI is available on your PATH.
@@ -21,7 +22,7 @@ This repository captures the starting point for building a Moodle plugin across 
 - `mdk plugins create` — scaffold new plugins with boilerplate PHP files and directory structure.
 - `mdk run grunt amd` — rebuild AMD modules after editing JavaScript (wrap in an npm script for convenience).
 - `mdk run phpunit` / `mdk run behat` — execute automated test suites against your plugin.
-- `mdk run php admin/cli/purge_caches.php` — clear Moodle caches when UI or language updates fail to appear.
+- `/opt/homebrew/opt/php@8.3/bin/php admin/cli/purge_caches.php` — clear Moodle caches when UI or language updates fail to appear.
 
 ## JavaScript & UI Reminders
 - Author ES2015 modules, avoid jQuery and legacy AJAX helpers, and rely on the Fetch API plus Moodle core modules (`core/reactive`, `core/templates`, `core/notification`).
@@ -40,18 +41,18 @@ This repository captures the starting point for building a Moodle plugin across 
 - "Explain when to choose a reactive component over a simple template-only enhancement."
 
 ## Reference Material
-- Moodle App Plugins Development Guide: <https://moodledev.io/general/app/development/plugins-development-guide>
-- Moodle Plugin Types: <https://moodledev.io/docs/4.1/apis/plugintypes>
-- JavaScript in Moodle: <https://moodledev.io/docs/5.1/guides/javascript>
-- Creating a Reactive UI: <https://moodledev.io/docs/5.1/guides/javascript/reactive>
-- Mustache Templates: <https://moodledev.io/docs/5.1/guides/templates>
-- Bootstrap 5 Migration Guidance: <https://moodledev.io/docs/5.1/guides/bs5migration>
+- Moodle App Plugins Development Guide: <https://moodledev.io/docs/5.0/general/app/development/plugins-development-guide>
+- Moodle Plugin Types: <https://moodledev.io/docs/5.0/apis/plugintypes>
+- JavaScript in Moodle: <https://moodledev.io/docs/5.0/guides/javascript>
+- Creating a Reactive UI: <https://moodledev.io/docs/5.0/guides/javascript/reactive>
+- Mustache Templates: <https://moodledev.io/docs/5.0/guides/templates>
+- Bootstrap 5 Migration Guidance: <https://moodledev.io/docs/5.0/guides/bs5migration>
 
-## MCP Server for Moodle 4.5 APIs
-The `mcp-server/` workspace hosts a Model Context Protocol server that mirrors the Moodle 4.5 API catalogue for research, scaffolding, and agent automation.
+## MCP Server for Moodle 5 APIs
+The `mcp-server/` workspace hosts a Model Context Protocol server that mirrors the Moodle 5.0 API catalogue for research, scaffolding, and agent automation.
 
 - **When to use it**
-  - Before designing a feature, query `lookup_api` for the definitive Moodle 4.5 guidance on any subsystem.
+  - Before designing a feature, query `lookup_api` for the definitive Moodle 5.0 guidance on any subsystem.
   - During implementation reviews, pull `moodleapi://api/{slug}` to confirm required callbacks, settings, or capability checks.
   - While pairing with MCP-aware agents (Cursor, Claude Desktop, etc.), point them at this server so suggestions stay aligned with the official docs.
 - **Resources**
@@ -64,7 +65,7 @@ The `mcp-server/` workspace hosts a Model Context Protocol server that mirrors t
 - **Setup workflow**
   1. `cd mcp-server`
   2. `npm install`
-  3. `npm run generate:apis` to refresh data from <https://moodledev.io/docs/4.5/apis> (re-run when Moodle updates the catalogue).
+  3. `npm run generate:apis` to refresh data from <https://moodledev.io/docs/5.0/apis> (re-run when Moodle updates the catalogue).
 - **Running the server**
   - `npm start` launches an stdio MCP server (ideal for direct MCP integrations).
   - `npm run start:http` serves HTTP on `POST /mcp`; override host/port with `--host`/`--port` or `HOST`/`PORT`.

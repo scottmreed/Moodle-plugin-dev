@@ -1,6 +1,8 @@
 Moodle Plugin Development Guidelines
 ===================================
 
+> Local environment setup (Moodle 5.0.3+, Docker Postgres, PHP 8.3, Node 22) is documented in `docs/local-environment.md`.
+
 1. Plan the plugin type and architecture
    - Select the plugin type that matches the feature (e.g., `mod`, `block`, `local`, `enrol`) and record both the friendly name and Frankenstyle component (`type_name`).
    - Map the PHP surface (capabilities, events, settings) and the Node/JavaScript surface (widgets, reactive flows) before coding so server and client concerns stay aligned.
@@ -47,7 +49,7 @@ Moodle Plugin Development Guidelines
 
 9. Manage data flow, caching, and versioning
    - Respect the difference between static (cached) and dynamic templates when tailoring responses for mobile or web.
-   - Purge caches (`mdk run php admin/cli/purge_caches.php`) or bump `version.php` when behaviour changes; document manual refresh steps if automation is not possible.
+   - Purge caches (`/opt/homebrew/opt/php@8.3/bin/php admin/cli/purge_caches.php`) or bump `version.php` when behaviour changes; document manual refresh steps if automation is not possible.
    - Use Moodle's APIs for database, capabilities, events, and file storage; encapsulate external calls in services that can be mocked during tests.
 
 10. Enforce capability, privacy, and security standards
@@ -66,7 +68,7 @@ Moodle Plugin Development Guidelines
 
 MCP Server Usage Notes
 ----------------------
-- Purpose: exposes the Moodle 4.5 API catalogue via MCP resources/tools so agents can cite official guidance during planning and reviews.
+- Purpose: exposes the Moodle 5.0 API catalogue via MCP resources/tools so agents can cite official guidance during planning and reviews.
 - Preferred flow:
   1. Run `npm run generate:apis` inside `mcp-server/` after Moodle docs change.
   2. Start the server with `npm start` (stdio) or `npm run start:http` for HTTP.

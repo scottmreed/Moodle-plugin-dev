@@ -1,6 +1,8 @@
 Moodle Plugin Development Guidelines
 ===================================
 
+> Local environment instructions (Moodle 5.0.3+, Docker Postgres, PHP 8.3, Node 22) live in `docs/local-environment.md`.
+
 1. Plan the plugin type and architecture
    - Select the plugin type that matches the feature (e.g., `mod`, `block`, `local`, `enrol`) and record both the friendly name and Frankenstyle component (`type_name`).
    - Map the PHP surface (capabilities, events, settings) and the Node/JavaScript surface (widgets, reactive flows) before coding so server and client concerns stay aligned.
@@ -47,7 +49,7 @@ Moodle Plugin Development Guidelines
 
 9. Manage data flow, caching, and versioning
    - Respect the difference between static (cached) and dynamic templates when tailoring responses for mobile or web.
-   - Purge caches (`mdk run php admin/cli/purge_caches.php`) or bump `version.php` when behaviour changes; document manual refresh steps if automation is not possible.
+   - Purge caches (`/opt/homebrew/opt/php@8.3/bin/php admin/cli/purge_caches.php`) or bump `version.php` when behaviour changes; document manual refresh steps if automation is not possible.
    - Use Moodle's APIs for database, capabilities, events, and file storage; encapsulate external calls in services that can be mocked during tests.
 
 10. Enforce capability, privacy, and security standards
@@ -65,8 +67,8 @@ Moodle Plugin Development Guidelines
 - Tag releases after bumping `version.php`, and coordinate with the Moodle community (forums, Matrix) when requesting new delegate extension points or sharing feedback.
 
 # MCP Server quick guide
-- Location: `mcp-server/`; provides the Moodle 4.5 API catalogue to MCP-aware tools.
-- Refresh data with `npm run generate:apis` whenever the upstream docs change.
+- Location: `mcp-server/`; provides the Moodle 5.0 API catalogue to MCP-aware tools.
+- Refresh data with `npm run generate:apis` whenever the upstream docs change (source docs: <https://moodledev.io/docs/5.0/apis>).
 - Preferred transports:
   - `npm start` (stdio) for agent integrations.
   - `npm run start:http` for HTTP clients targeting `POST /mcp`.
