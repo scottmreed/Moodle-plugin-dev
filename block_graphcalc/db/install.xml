@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMLDB PATH="block/graphcalc/db" VERSION="2024091900" COMMENT="Install XML for block_graphcalc." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<XMLDB PATH="blocks/graphcalc/db" VERSION="2024091901" COMMENT="Install XML for block_graphcalc.">
     <TABLES>
-        <!-- No custom tables are required at this time; this placeholder simplifies future schema additions. -->
+        <TABLE NAME="block_graphcalc_preset" COMMENT="Stores reusable graphing calculator presets that can be shared across contexts.">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="contextid" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="false"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="false"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT=""/>
+                <FIELD NAME="description" TYPE="text" NOTNULL="false"/>
+                <FIELD NAME="definition" TYPE="text" NOTNULL="true" COMMENT="JSON payload describing expressions, styling, and axes configuration."/>
+                <FIELD NAME="ispublic" TYPE="int" LENGTH="2" UNSIGNED="true" NOTNULL="true" DEFAULT="0" COMMENT="1 when preset is available to all users within the scoped context."/>
+                <FIELD NAME="requiresadvanced" TYPE="int" LENGTH="2" UNSIGNED="true" NOTNULL="true" DEFAULT="0" COMMENT="1 when preset depends on advanced calculator features."/>
+                <FIELD NAME="sortorder" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="true" DEFAULT="0"/>
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="true" DEFAULT="0"/>
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="true" DEFAULT="0"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="context_fk" TYPE="foreign" FIELDS="contextid" REFTABLE="context" REFFIELDS="id"/>
+                <KEY NAME="owner_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="context_visibility_idx" UNIQUE="false" FIELDS="contextid,ispublic,sortorder"/>
+                <INDEX NAME="owner_sort_idx" UNIQUE="false" FIELDS="userid,sortorder"/>
+                <INDEX NAME="name_idx" UNIQUE="false" FIELDS="name"/>
+            </INDEXES>
+        </TABLE>
+
+        <TABLE NAME="block_graphcalc_state" COMMENT="Persists saved calculator states for block instances and individual users.">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="blockinstanceid" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="true" DEFAULT="0"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="false"/>
+                <FIELD NAME="presetid" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="false"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="100" NOTNULL="true" DEFAULT=""/>
+                <FIELD NAME="statejson" TYPE="text" NOTNULL="true" COMMENT="JSON snapshot of the calculator state including expressions, viewport, and annotations."/>
+                <FIELD NAME="iscurrent" TYPE="int" LENGTH="2" UNSIGNED="true" NOTNULL="true" DEFAULT="0" COMMENT="1 when this state represents the current active selection for the block instance."/>
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="true" DEFAULT="0"/>
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="true" DEFAULT="0"/>
+                <FIELD NAME="lastused" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="true" DEFAULT="0"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="block_fk" TYPE="foreign" FIELDS="blockinstanceid" REFTABLE="block_instances" REFFIELDS="id"/>
+                <KEY NAME="state_owner_fk" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+                <KEY NAME="state_preset_fk" TYPE="foreign" FIELDS="presetid" REFTABLE="block_graphcalc_preset" REFFIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="block_owner_idx" UNIQUE="false" FIELDS="blockinstanceid,userid,iscurrent"/>
+                <INDEX NAME="preset_idx" UNIQUE="false" FIELDS="presetid"/>
+            </INDEXES>
+        </TABLE>
     </TABLES>
 </XMLDB>

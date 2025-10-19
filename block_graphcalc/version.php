@@ -17,7 +17,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'block_graphcalc';
-$plugin->version = 2024091900; // YYYYMMDDHH (stub) - update before release.
+$plugin->version = 2024091902; // YYYYMMDDHH (stub) - update before release.
 $plugin->requires = 2024042200; // Moodle 4.5 (stub) - confirm against target version.
 $plugin->maturity = MATURITY_ALPHA;
 $plugin->release = '0.1.0-dev';
